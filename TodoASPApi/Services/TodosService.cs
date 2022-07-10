@@ -17,7 +17,7 @@ namespace TodoASPApi.Services {
         }
 
         public async Task<Todo> Create(CreateTodoDto dto) {
-            var date = DateTime.Now;
+            var date = DateTime.UtcNow;
             Todo todo = new Todo {
                 Text = dto.Text,
                 CreatedDate = date,
@@ -43,7 +43,7 @@ namespace TodoASPApi.Services {
             if (todo == null) return null;
 
             todo.Text = dto.Text;
-            todo.UpdatedDate = DateTime.Now;
+            todo.UpdatedDate = DateTime.UtcNow;
             todo.IsCompleted = dto.IsCompleted;
 
             _dbContext.Todos.Update(todo);
