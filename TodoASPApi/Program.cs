@@ -24,7 +24,7 @@ builder.Services.AddSwaggerGen(options => {
 
 
 
-builder.Services.AddDbContext<TodoAppContext>(options => options.UseNpgsql(Environment.GetEnvironmentVariable("DATABASE_URL")));
+builder.Services.AddDbContext<TodoAppContext>(options => options.UseNpgsql(Environment.GetEnvironmentVariable("CONNECTION_STRING")));
 
 
 builder.Services.AddScoped<ITodosService, TodosService>();
