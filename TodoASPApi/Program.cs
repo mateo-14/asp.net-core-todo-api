@@ -16,7 +16,7 @@ builder.Services.AddSwaggerGen(options => {
         new OpenApiInfo {
             Version = "v1",
             Title = " ASP.NET Core TODO API",
-            Description = "Made for learning Backend Development with ASP.NET Core",
+            Description = "Made to learn Backend Development with ASP.NET Core",
             Contact = new OpenApiContact { Name = "My web", Url = new Uri("https://mateoledesma.vercel.app") },
         }
     );
@@ -34,11 +34,13 @@ using (var scope = app.Services.CreateScope()) {
     context.Database.Migrate();
 }
 
-// Configure the HTTP request pipeline.
-if (app.Environment.IsDevelopment()) {
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+
+app.UseSwagger();
+app.UseSwaggerUI(options => {
+    options.SwaggerEndpoint("/swagger/v1/swagger.json", "V1");
+    options.RoutePrefix = "";
+});
+
 
 app.UseHttpsRedirection();
 
