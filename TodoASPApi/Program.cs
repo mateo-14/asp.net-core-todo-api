@@ -29,6 +29,10 @@ builder.Services.AddScoped<ITodosService, TodosService>();
 
 var app = builder.Build();
 
+using (var scope = app.Services.CreateScope()) {
+    var context = scope.ServiceProvider.GetRequiredService<TodoAppContext>();
+    context.Database.Migrate();
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment()) {
