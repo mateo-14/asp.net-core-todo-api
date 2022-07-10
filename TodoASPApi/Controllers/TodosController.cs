@@ -69,7 +69,7 @@ namespace TodoASPApi.Controllers {
         [SwaggerResponse(400, "The Body is invalid")]
         public async Task<IActionResult> Delete(int id) {
             bool isDeleted = await _todosService.Delete(id);
-            if (isDeleted) return NotFound();
+            if (!isDeleted) return NotFound();
 
             return NoContent();
         }
